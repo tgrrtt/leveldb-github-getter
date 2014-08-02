@@ -1,17 +1,21 @@
 {
-  "name": "github-level-get",
+  "name": "leveldb-github-getter",
   "version": "0.0.1",
-  "description": "1) Module A that takes an array of names as an argument ([\"David\", \"Tyler\"]).  For each name, hits the Github search API to search for that name (url is 'https://api.github.com/search/users?q=' + name) and stores the results in leveldb (the key is the name). Prints \"Done\", once everything has been saved (not before).",
-  "main": "index.js",
+  "description": "Hits github user api and saves/loads results in a leveldb",
+  "main": "../server.js",
   "dependencies": {
     "async": "^0.9.0",
+    "chai": "^1.9.1",
+    "express": "^4.7.2",
     "level": "^0.18.0",
+    "mocha": "^1.21.3",
     "request": "^2.39.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "test-w": "mocha -w"
   },
-  "author": "",
+  "author": "tgrrtt",
   "license": "ISC"
 }

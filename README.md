@@ -1,18 +1,13 @@
-1) Module A that takes an array of names as an argument (["David", "Tyler"]). 
-For each name, hits the Github search API to search for that name (url is 'https://api.github.com/search/users?q=' + name) and stores the results in leveldb (the key is the name). Prints "Done", once everything has been saved (not before).
 
-Should use these modules: request, async, level
+##save(usernames, callback)
+Takes either a single username, or an array of usernames.
+callback gets called with `(err, data)` where data is an array of what was saved.
 
-2) Module B takes an array of names as an argument. For each name, goes into level to pull existing results and logs it (console.log).
 
-Should use these modules: async, level
+##load(usernames, callback)
+Takes either a single username, or an array of usernames.
+Callback gets called with `(err, data)` where data is an array of what was loaded.
 
-Bonus:
 
-3) Create an http server that has an endpoint that takes a name as a query parameter /?name=david and returns the results from level.
-
-Should use modules: http, url, level
-
-4) Modify bonus 1 so that if results aren't found in the db, the results are fetched from Github first, stored in level second, returned in the response third.
-
-should use above modules + request
+#### Note:
+I'm completely aware there's no tests, and thats a really bad thing, I just need to figure out how to mock this leveldb stuff.
