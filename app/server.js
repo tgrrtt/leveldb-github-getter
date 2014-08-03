@@ -1,24 +1,28 @@
-var express = require("express"),
+var http    = require("http"),
+    url     = require("url"),
     load    = require("./load"),
     save    = require("./save"),
     db      = require("./db.js");
+    
+var server = http.createServer();
 
-var app = express();
-app.get("/", function(req, res) {
-  load(req.query.name, function(err, value) {
+server.on("request", function(req, res) {
+  var username = url.parse(req.url, true).query.name;
+    load(username, function(err, value) {
     if (err) {
       console.log("Getting users info...");
-      save(req.query.name, function(err, value) {
+      save(username, function(err, value) {
         if (err) {
-          res.status(404).send("There was an error");
+          res.statusCode = 404;
+          res.end("There was an error");
         } else {
-          res.send(value[0]);
+          res.end(value[0]);
         }
       });
     } else {
-      res.send(value[0]);
+      res.end(value[0]);
     }
   });
 });
 
-app.listen(8000);
+server.listen(8000);
