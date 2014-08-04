@@ -8,7 +8,8 @@ var server = http.createServer();
 
 server.on("request", function(req, res) {
   var username = url.parse(req.url, true).query.name;
-    load(username, function(err, value) {
+  username = [username];
+  load(username, function(err, value) {
     if (err) {
       console.log("Getting users info...");
       save(username, function(err, value) {

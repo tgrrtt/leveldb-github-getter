@@ -1,11 +1,11 @@
 
 ##save(usernames, callback)
-Takes either a single username, or an array of usernames.
+Takes an array of usernames.
 callback gets called with `(err, data)` where data is an array of what was saved.
 
 
 ##load(usernames, callback)
-Takes either a single username, or an array of usernames.
+Takes an array of usernames
 Callback gets called with `(err, data)` where data is an array of what was loaded.
 
 

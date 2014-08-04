@@ -14,9 +14,6 @@ var iterator = function(err) {
 // callbacks 2nd value will be a copy of the data that the db saved.
 
 function saveGitHubUser (userNames, callback) {
-  if (typeof userNames === "string") {
-    userNames = [userNames];
-  }
   async.map(userNames, function(username, iterator) {
     request.get('https://api.github.com/search/users?q=' + username, {
       headers: {
