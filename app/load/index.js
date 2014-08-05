@@ -1,26 +1,22 @@
-var level   = require("level"),
-    db = require("../db.js"),
+var db = require("../db.js"),
     async   = require("async");
     
-var iterator = function(err, result) {
-  if (err) {
-    return err;
-  }
-};
 
 // takes array of usernames, and a callback to get called when all items have been iterated
 
 function loadGitHubUsers (userNames, callback) {
 
-  async.map(userNames, function(username, iterator) {
+  async.map(userNames, getUsername, callback);
+  
+  function getUsername(username, callback){
     db.get(username, function(err, value) {
       if (err) {
-        iterator(err);
+        callback(err);
       } else {
-        iterator(null, value);
+        callback(null, value);
       }
     });
-  }, callback);
+  }
 }
 
 // loadGitHubUsers(["tgrrtt"], function(err, data) {

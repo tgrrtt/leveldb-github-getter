@@ -8,20 +8,20 @@ var server = http.createServer();
 
 server.on("request", function(req, res) {
   var username = url.parse(req.url, true).query.name;
-  username = [username];
-  load(username, function(err, value) {
+  var usernames = [username];
+  load(usernames, function(err, userData) {
     if (err) {
       console.log("Getting users info...");
-      save(username, function(err, value) {
+      save(usernames, function(err, userDataFromSave) {
         if (err) {
           res.statusCode = 404;
           res.end("There was an error");
         } else {
-          res.end(value[0]);
+          res.end(userDataFromSave[0]);
         }
       });
     } else {
-      res.end(value[0]);
+      res.end(userData[0]);
     }
   });
 });
